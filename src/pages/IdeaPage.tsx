@@ -87,15 +87,15 @@ export function IdeaPage() {
         </div>
       </div>
 
-      <div className="mt-6 flex gap-1 overflow-x-auto border-b border-slate-200">
+      <div className="mt-6 flex gap-1 overflow-x-auto border-b border-slate-200 [-webkit-overflow-scrolling:touch]">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`shrink-0 border-b-2 px-4 py-2 text-sm font-semibold transition ${
+            className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold transition touch-manipulation ${
               tab === t.key
                 ? 'border-brand-600 text-brand-700'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
+                : 'border-transparent text-slate-500 active:text-slate-700'
             }`}
           >
             {t.icon} {t.label}

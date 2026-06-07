@@ -129,20 +129,22 @@ export function BoardPage() {
         <ul className="space-y-3">
           {sorted.map((idea) => (
             <li key={idea.id} className="card flex items-start gap-4">
-              <VoteButtons
-                upvotes={idea.upvotes ?? 0}
-                downvotes={idea.downvotes ?? 0}
-                myVote={idea.myVote ?? 0}
-                onVote={(v) => handleVote(idea, v)}
-              />
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <Link
-                    to={`/idea/${idea.id}`}
-                    className="truncate text-lg font-bold text-slate-900 hover:text-brand-700"
-                  >
+              <div onClick={(e) => e.stopPropagation()}>
+                <VoteButtons
+                  upvotes={idea.upvotes ?? 0}
+                  downvotes={idea.downvotes ?? 0}
+                  myVote={idea.myVote ?? 0}
+                  onVote={(v) => handleVote(idea, v)}
+                />
+              </div>
+              <Link
+                to={`/idea/${idea.id}`}
+                className="min-w-0 flex-1 active:opacity-70"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="truncate text-lg font-bold text-slate-900">
                     {idea.title}
-                  </Link>
+                  </span>
                   <IdeaStatusBadge status={idea.status} />
                 </div>
                 {idea.description && (
@@ -153,7 +155,7 @@ export function BoardPage() {
                 <p className="mt-2 text-xs text-slate-400">
                   di {idea.owner?.display_name ?? '—'} · punteggio {idea.score ?? 0}
                 </p>
-              </div>
+              </Link>
             </li>
           ))}
         </ul>
